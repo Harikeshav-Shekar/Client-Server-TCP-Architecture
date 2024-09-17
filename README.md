@@ -1,7 +1,6 @@
 # TCP Client Server
 
-My implementation of a multithreaded TCP Client/Server written in C++. The purpose of this project was to grasp the concepts of socket programming, utilize the pthread library to manage threads and synchronise them using mutexes and condition variables.
-
+This is an implementation of a multithreaded TCP Client/Server written in C++.
 TCP is a reliable protocol that guarantees that the data remain intact and arrive in the same order in which they were sent. While, multithreading allows multiple clients to connect and interact with the server in tandem, without significant drop-offs in transmission time.
 
 ## Implementation
@@ -14,7 +13,7 @@ TCP is a reliable protocol that guarantees that the data remain intact and arriv
 
 ## Data Server
 
-I chose a rather simple approach of keeping the thread functions in the [helperFunctions.cpp](Data_Server/helperFunctions.cpp) file and the basic server structure in [dataServer.cpp](Data_Server/dataServer.cpp).
+This is a simple approach of keeping the thread functions in the helperFunctions.cpp file and the basic server structure in dataServer.cpp.
 
 - On startup, the server awaits for connections from clients on the predefined port that is provided as an argument.
 
@@ -27,7 +26,7 @@ I chose a rather simple approach of keeping the thread functions in the [helperF
 - Finally, with the use of a map of mutexes for each socket, I ensure that only one worker thread at a time can write on a specific socket.
 
 ## Remote Client
-The code for the client is in the [remoteClient.cpp](Remote_Client/remoteClient.cpp) file.
+The code for the client is in the remoteClient.cpp file.
 - On the client side the server IP, port number and directory that is requested from the server is given as an argument. 
 - A socket is created to connect to the server and the request is sent. 
 - Then, for each file of the directory it reads from the socket the file path, metadata and the file itself. Using this information it replicates locally the same folder structure.
@@ -50,12 +49,12 @@ To compile all the files:
 $ make all
 ```
 
-To start the server in the [Data_Server](Data_Server/) directory run:
+To start the server in the Data_Server directory run:
 ```
 ./dataServer -p <port> -s <pool_size> -q <queue_size> -b <block_size>
 ```
 
-To start the client in the [Remote_Client](Remote_Client/) directory run:
+To start the client in the Remote_Client directory run:
 ```
 ./remoteClient -i <server_ip> -p <server_port> -d <directory>
 ```
